@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Magnetic Dot Cursor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* Hide default cursor only on mouse devices */
+    @media (hover: hover) {
+      body { cursor: none; }
+    }
+
+    body {
+      min-height: 200vh;
+      background: linear-gradient(135deg, #0f2027, #000);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 60px;
+    }
+
+    a, button {
+      margin-top: 40px;
+      display: inline-block;
+      padding: 14px 32px;
+      background: #00f2ff;
+      color: #000;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      border: none;
+      cursor: none;
+    }
+
+    /* ===== BASE CURSOR SETUP ===== */
+    .cursor-dot,
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      transform: translate3d(0,0,0);
+      will-change: transform;
+      z-index: 10000;
+    }
+
+    /* ===== CENTER DOT ===== */
+    .cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: #00f2ff;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(0, 242, 255, 0.8);
+    }
+
+    /* ===== MAGNETIC RING ===== */
+    .cursor-ring {
+      width: 36px;
+      height: 36px;
+      border: 2px solid rgba(0, 242, 255, 0.6);
+      border-radius: 50%;
+      transition: transform 0.25s ease, width 0.25s ease, height 0.25s ease;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+    }
+
+    /* Hover grow effect */
+    .cursor-ring.active {
+      width: 60px;
+      height: 60px;
+      border-color: rgba(0, 242, 255, 1);
+      box-shadow: 0 0 30px rgba(0, 242, 255, 0.8);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Magnetic Dot Cursor</h1>
+  <p>Move over the button to see magnetic effect</p>
+
+  <a href="#">Hover Me</a>
+  <button style="margin-left:20px;">Click Me</button>
+
+  <!-- ===== CURSOR ELEMENTS ===== -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    const dot = document.querySelector(".cursor-dot");
+    const ring = document.querySelector(".cursor-ring");
+    const hoverTargets = document.querySelectorAll("a, button");
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    let ringX = mouseX, ringY = mouseY;
+
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      dot.style.transform =
+        `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+    });
+
+    // Magnetic smooth follow
+    function animate() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+
+      ring.style.transform =
+        `translate3d(${ringX}px, ${ringY}px, 0)`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // ===== MAGNETIC HOVER EFFECT =====
+    hoverTargets.forEach(el => {
+      el.addEventListener("mouseenter", () => {
+        ring.classList.add("active");
+      });
+
+      el.addEventListener("mouseleave", () => {
+        ring.classList.remove("active");
+      });
+    });
+  </script>
+
+</body>
+</html>

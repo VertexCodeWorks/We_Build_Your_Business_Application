@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Liquid Blob Cursor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* Hide default cursor only on mouse devices */
+    @media (hover: hover) {
+      body { cursor: none; }
+    }
+
+    body {
+      min-height: 200vh;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 60px;
+    }
+
+    h1 {
+      font-size: 42px;
+    }
+
+    p {
+      opacity: 0.8;
+    }
+
+    a, button {
+      margin-top: 40px;
+      margin-right: 20px;
+      padding: 14px 36px;
+      border-radius: 30px;
+      border: none;
+      background: #00f2ff;
+      color: #000;
+      font-weight: bold;
+      cursor: none;
+    }
+
+    /* ===== BASE LIQUID CURSOR ===== */
+    .liquid-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 28px;
+      height: 28px;
+      background: radial-gradient(circle at 30% 30%, #00f2ff, #0066ff);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate3d(0,0,0);
+      will-change: transform, border-radius;
+      filter: blur(0.2px) drop-shadow(0 0 12px rgba(0,242,255,0.6));
+      transition: border-radius 0.2s ease;
+    }
+
+    /* Stretch on hover */
+    .liquid-cursor.active {
+      border-radius: 40% 60% 55% 45% / 60% 40% 60% 40%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Liquid Blob Cursor</h1>
+  <p>Organic morphing cursor for creative & experimental UIs</p>
+
+  <a href="#">Hover Me</a>
+  <button>Click Me</button>
+
+  <!-- ===== CURSOR ELEMENT ===== -->
+  <div class="liquid-cursor"></div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    const cursor = document.querySelector(".liquid-cursor");
+    const hoverTargets = document.querySelectorAll("a, button");
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    let posX = mouseX;
+    let posY = mouseY;
+
+    let velocityX = 0;
+    let velocityY = 0;
+
+    // Track real mouse
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Liquid elastic motion
+    function animate() {
+      velocityX += (mouseX - posX) * 0.12;
+      velocityY += (mouseY - posY) * 0.12;
+
+      velocityX *= 0.75;
+      velocityY *= 0.75;
+
+      posX += velocityX;
+      posY += velocityY;
+
+      const speed = Math.min(Math.abs(velocityX) + Math.abs(velocityY), 20);
+
+      const r1 = 50 + speed;
+      const r2 = 50 - speed / 2;
+
+      cursor.style.borderRadius =
+        `${r1}% ${r2}% ${50}% ${50}% / ${r2}% ${r1}% ${50}% ${50}%`;
+
+      cursor.style.transform =
+        `translate3d(${posX}px, ${posY}px, 0)`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Hover morph
+    hoverTargets.forEach(el => {
+      el.addEventListener("mouseenter", () => {
+        cursor.classList.add("active");
+      });
+
+      el.addEventListener("mouseleave", () => {
+        cursor.classList.remove("active");
+      });
+    });
+  </script>
+
+</body>
+</html>

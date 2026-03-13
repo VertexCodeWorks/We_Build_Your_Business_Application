@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lag Rings Arrow Cursor | Perfect Center</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* Hide default cursor only for mouse devices */
+    @media (hover: hover) {
+      body {
+        cursor: none;
+      }
+    }
+
+    body {
+      min-height: 200vh;
+      background: radial-gradient(circle at top, #0f2027, #0e0e0e);
+      color: #ffffff;
+      font-family: "Segoe UI", sans-serif;
+      padding: 60px;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      opacity: 0.8;
+    }
+
+    /* ===== BASE SETUP ===== */
+    .cursor-main,
+    .cursor-follow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      will-change: transform;
+      transform: translate3d(0,0,0);
+      transform-origin: center center;
+    }
+
+    /* ===== SHARP TECH ARROW ===== */
+    .cursor-main {
+      width: 14px;
+      height: 14px;
+      border-left: 2px solid #00f2ff;
+      border-bottom: 2px solid #00f2ff;
+      z-index: 10000;
+      filter: drop-shadow(0 0 4px rgba(0, 242, 255, 0.8));
+    }
+
+    /* ===== TRAILING RINGS ===== */
+    .cursor-follow {
+      border-radius: 50%;
+      z-index: 9999;
+    }
+
+    .cursor-follow-1 {
+      width: 32px;
+      height: 32px;
+      border: 2px solid rgba(0, 242, 255, 0.65);
+      box-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+    }
+
+    .cursor-follow-2 {
+      width: 56px;
+      height: 56px;
+      border: 2px solid rgba(0, 242, 255, 0.30);
+      box-shadow: 0 0 18px rgba(0, 242, 255, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Lag Rings Arrow Cursor</h1>
+  <p>Perfectly Centered Arrow Cursor – Premium Tech Style</p>
+
+  <!-- ===== CURSOR ELEMENTS ===== -->
+  <div class="cursor-main"></div>
+  <div class="cursor-follow cursor-follow-1"></div>
+  <div class="cursor-follow cursor-follow-2"></div>
+
+  <script>
+    const mainCursor = document.querySelector(".cursor-main");
+    const follower1 = document.querySelector(".cursor-follow-1");
+    const follower2 = document.querySelector(".cursor-follow-2");
+
+    // Start at center of screen
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    let pos1X = mouseX, pos1Y = mouseY;
+    let pos2X = mouseX, pos2Y = mouseY;
+
+    const mainWidth = 14, mainHeight = 14;
+    const follow1Width = 32, follow1Height = 32;
+    const follow2Width = 56, follow2Height = 56;
+
+    // Track real mouse
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      // Center the arrow
+      mainCursor.style.transform =
+        `translate3d(${mouseX - mainWidth/2}px, ${mouseY - mainHeight/2}px, 0) rotate(-45deg)`;
+    });
+
+    // Smooth cinematic follow
+    function animate() {
+      // Medium lag
+      pos1X += (mouseX - pos1X) * 0.07;
+      pos1Y += (mouseY - pos1Y) * 0.07;
+
+      // Slow lag
+      pos2X += (mouseX - pos2X) * 0.05;
+      pos2Y += (mouseY - pos2Y) * 0.05;
+
+      // Center followers
+      follower1.style.transform =
+        `translate3d(${pos1X - follow1Width/2}px, ${pos1Y - follow1Height/2}px, 0)`;
+      follower2.style.transform =
+        `translate3d(${pos2X - follow2Width/2}px, ${pos2Y - follow2Height/2}px, 0)`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+/* ================================
+   WHY CHOOSE US – PROFESSIONAL TRUST
+================================ */
+
+.why-pro-section {
+  padding: 120px 8%;
+  background: #ffffff;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #0f172a;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.why-pro-header {
+  max-width: 780px;
+  margin: 0 auto 80px auto;
+  text-align: center;
+}
+
+.why-tag {
+  display: inline-block;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d4ed8;
+  background: #eff6ff;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.why-pro-header h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.why-pro-header p {
+  font-size: 18px;
+  color: #475569;
+  line-height: 1.7;
+}
+
+/* ================================
+   TRUST GRID
+================================ */
+
+.why-pro-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+.why-pro-item {
+  text-align: center;
+  padding: 10px 10px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.4s ease;
+}
+
+.why-pro-item:hover {
+  border-bottom: 2px solid #2563eb;
+  transform: translateY(-6px);
+}
+
+.why-icon {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.why-pro-item h4 {
+  font-size: 19px;
+  font-weight: 600;
+  color: #1e40af;
+  margin-bottom: 10px;
+}
+
+.why-pro-item p {
+  font-size: 15px;
+  color: #475569;
+  line-height: 1.7;
+}
+
+/* ================================
+   TRUST LINE
+================================ */
+
+.why-pro-trustline {
+  margin-top: 90px;
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.why-pro-trustline p {
+  font-size: 17px;
+  font-weight: 500;
+  color: #1e293b;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1024px) {
+  .why-pro-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .why-pro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-pro-header h2 {
+    font-size: 32px;
+  }
+}

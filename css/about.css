@@ -1,0 +1,172 @@
+/* ====================
+   About Section
+==================== */
+#about {
+  width: 100%;
+  padding: 100px 20px;
+  background: #f9fafb;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* Left Content */
+.about-content {
+  flex: 1;
+  min-width: 280px;
+  opacity: 0;
+  transform: translateX(-50px) rotate(-2deg);
+  transition: all 0.8s ease-out;
+}
+
+.about-content.active {
+  opacity: 1;
+  transform: translateX(0) rotate(0);
+}
+
+.about-content h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.about-content h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #ffb703;
+}
+
+.about-content p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.about-points {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.about-points li {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+/* Right Cards */
+.about-stats {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  opacity: 0;
+  transform: translateY(30px) scale(0.95) rotate(-1deg);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.stat-card.active {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(0);
+}
+
+/* Hover effect for desktop */
+@media (hover: hover) {
+  .stat-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  }
+}
+
+.stat-card h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.stat-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ================================
+   Responsive Design
+================================ */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .about-content h2 {
+    font-size: 2rem;
+  }
+
+  .about-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .about-content p, .about-points li {
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  #about {
+    padding: 60px 15px;
+  }
+
+  .about-content h2 {
+    font-size: 1.6rem;
+  }
+
+  .about-content h3 {
+    font-size: 1rem;
+  }
+
+  .about-content p, .about-points li {
+    font-size: 0.9rem;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 18px;
+    transform: translateY(20px) scale(0.97) rotate(0deg);
+  }
+
+  .stat-card.active {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}

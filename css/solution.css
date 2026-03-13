@@ -1,0 +1,112 @@
+/* ================================
+   WHY-NEED SECTION – ENTERPRISE STYLE
+================================ */
+
+.why-need-section {
+  padding: 110px 8%;
+  background: linear-gradient(145deg, #020617, #020617);
+  color: #ffffff;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+.why-need-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.why-need-header h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #60a5fa;
+  margin-bottom: 12px;
+}
+
+.why-need-header p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  max-width: 760px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+/* ================================
+   WHY ITEM GRID
+================================ */
+
+.why-need-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+/* ================================
+   WHY ITEM CARD
+================================ */
+
+.why-item {
+  background: linear-gradient(145deg, #0f172a, #020617);
+  border-radius: 18px;
+  border: 1px solid rgba(96,165,250,0.25);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+  padding: 28px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.why-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(96,165,250,0.25), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.why-item:hover::after {
+  opacity: 1;
+}
+
+.why-item:hover {
+  transform: translateY(-10px);
+  border-color: rgba(34,211,238,0.6);
+  box-shadow: 0 20px 55px rgba(34,211,238,0.25);
+}
+
+/* ================================
+   WHY ITEM CONTENT
+================================ */
+
+.why-item h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #60a5fa;
+  margin-bottom: 6px;
+}
+
+.why-item p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  margin: 12px 0 14px;
+}
+
+.why-item ul {
+  padding-left: 18px;
+}
+
+.why-item li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.8);
+}
+
+@media(max-width:768px){
+  .why-need-section {
+    padding: 70px 6%;
+  }
+
+  .why-item {
+    padding: 20px;
+  }
+}

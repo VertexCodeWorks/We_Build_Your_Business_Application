@@ -1,0 +1,186 @@
+/* ===== RESET & BODY ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* ===== NAVBAR BASE ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: radial-gradient(circle at top left, #0f172a, #020617);
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(96,165,250,0.15);
+}
+
+.navbar .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== LOGO ===== */
+.logo {
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #60a5fa;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.logo:hover {
+  color: #22d3ee;
+  transform: scale(1.05);
+}
+
+/* ===== NAV LINKS ===== */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  list-style: none;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 8px 6px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #22d3ee;
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: linear-gradient(145deg, #0f172a, #020617);
+  border-radius: 12px;
+  border: 1px solid rgba(96,165,250,0.2);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdown-menu li a {
+  padding: 12px 20px;
+  display: block;
+  color: rgba(255,255,255,0.85);
+}
+
+.dropdown-menu li a:hover {
+  background: rgba(96,165,250,0.15);
+  color: #22d3ee;
+}
+
+/* Show dropdown */
+.dropdown:hover .dropdown-menu,
+.dropdown-menu:hover {
+  display: flex;
+  animation: fadeDown 0.25s ease forwards;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+section {
+  scroll-margin-top: 90px;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== RIGHT CTA BUTTON ===== */
+.cta-btn {
+  background: linear-gradient(90deg, #60a5fa, #22d3ee);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.3s;
+  box-shadow: 0 6px 18px rgba(34,211,238,0.35);
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(34,211,238,0.55);
+}
+
+/* ===== HAMBURGER ===== */
+.menu-toggle {
+  display: none;
+  font-size: 1.9rem;
+  cursor: pointer;
+  color: #22d3ee;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .nav-links {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: linear-gradient(145deg, #0f172a, #020617);
+    flex-direction: column;
+    display: none;
+    border-top: 1px solid rgba(96,165,250,0.15);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown-menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none;
+  }
+
+  .dropdown.active .dropdown-menu {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}

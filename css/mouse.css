@@ -1,0 +1,57 @@
+/* Hide default cursor on mouse devices */
+@media (hover: hover) {
+  body {
+    cursor: none;
+  }
+}
+
+/* ===== Cursor Base Setup ===== */
+.cursor-main,
+.cursor-follow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+  transform: translate3d(0,0,0);
+  transform-origin: center center;
+}
+
+/* ===== Sharp Tech Arrow ===== */
+.cursor-main {
+  width: 14px;
+  height: 14px;
+  border-left: 2px solid #00f2ff;
+  border-bottom: 2px solid #00f2ff;
+  z-index: 10000;
+  filter: drop-shadow(0 0 4px rgba(0, 242, 255, 0.8));
+}
+.cursor-main {
+  width: 14px;
+  height: 14px;
+  border-left: 2px solid #05005c;
+  border-bottom: 2px solid #05005c;
+  z-index: 10000;
+  filter: drop-shadow(0 0 4px rgba(14, 0, 104, 0.8));
+}
+
+
+/* ===== Trailing Rings ===== */
+.cursor-follow {
+  border-radius: 50%;
+  z-index: 9999;
+}
+
+.cursor-follow-1 {
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(0, 242, 255, 0.65);
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+}
+
+.cursor-follow-2 {
+  width: 56px;
+  height: 56px;
+  border: 2px solid rgba(0, 242, 255, 0.30);
+  box-shadow: 0 0 18px rgba(0, 242, 255, 0.2);
+}

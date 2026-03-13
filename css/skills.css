@@ -1,0 +1,149 @@
+/* ================================
+   SKILLS SECTION – PREMIUM DESIGN
+================================ */
+
+.skills-section {
+  padding: 110px 8%;
+  background: radial-gradient(circle at top, #020617, #020617);
+  color: #ffffff;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.skills-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.skills-header h2 {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #60a5fa;
+  margin-bottom: 10px;
+}
+
+.skills-header p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+/* ================================
+   3D FLIP CARD STRUCTURE
+================================ */
+
+.skill-card {
+  perspective: 1200px;
+  height: 260px;
+}
+
+.skill-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(.4,.2,.2,1);
+}
+
+.skill-card:hover .skill-inner {
+  transform: rotateY(180deg);
+}
+
+/* ================================
+   FRONT & BACK COMMON STYLES
+================================ */
+
+.skill-front,
+.skill-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 18px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+/* ================================
+   FRONT SIDE
+================================ */
+
+.skill-front {
+  background: linear-gradient(145deg, #0f172a, #020617);
+}
+
+.skill-front h3 {
+  color: #60a5fa;
+  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.skill-front ul {
+  padding-left: 16px;
+}
+
+.skill-front li {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ================================
+   BACK SIDE
+================================ */
+
+.skill-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(145deg, #020617, #0f172a);
+  border-color: rgba(34, 211, 238, 0.45);
+}
+
+.skill-back h4 {
+  color: #22d3ee;
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.skill-back p {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ================================
+   HOVER GLOW EFFECT
+================================ */
+
+.skill-front::after,
+.skill-back::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(96,165,250,0.25),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.skill-card:hover .skill-front::after,
+.skill-card:hover .skill-back::after {
+  opacity: 1;
+}

@@ -1,0 +1,223 @@
+.footer-section {
+  background: linear-gradient(180deg, #020617 0%, #000000 100%);
+  color: #ffffff;
+  padding: 120px 8% 60px 8%;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== LIGHT SWEEP ===== */
+.footer-section::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -50%;
+  width: 200%;
+  height: 300%;
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(96,165,250,0.08),
+    rgba(34,211,238,0.12),
+    transparent 60%
+  );
+  animation: lightSweep 10s linear infinite;
+  z-index: 1;
+}
+
+@keyframes lightSweep {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(60%); }
+}
+
+.footer-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  max-width: 1400px;
+  margin: auto;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 250px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s cubic-bezier(.19,1,.22,1);
+}
+
+/* Headings Glow */
+.footer-column h2,
+.footer-column h3 {
+  color: #60a5fa;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 12px rgba(96,165,250,0.4), 0 0 25px rgba(34,211,238,0.25);
+}
+
+.glow-text {
+  font-size: 2rem;
+}
+
+/* Text Styling */
+.footer-column p,
+.footer-column ul li,
+.footer-column a {
+  font-size: 15px;
+  color: rgba(255,255,255,0.88);
+  text-decoration: none;
+  line-height: 1.8;
+}
+
+/* Links */
+.footer-column a {
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.footer-column a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #60a5fa, #22d3ee);
+  transition: 0.4s ease;
+  filter: drop-shadow(0 0 6px rgba(34,211,238,0.6));
+}
+
+.footer-column a:hover::after {
+  width: 100%;
+}
+
+.footer-column a:hover {
+  color: #22d3ee;
+}
+
+/* Contact icons */
+.footer-contact li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.footer-contact i {
+  color: #22d3ee;
+  font-size: 16px;
+  text-shadow: 0 0 10px rgba(34,211,238,0.6);
+}
+
+/* Social hover */
+.footer-social a {
+  font-size: 22px;
+  margin-right: 18px;
+  color: #60a5fa;
+  transition: 0.4s cubic-bezier(.19,1,.22,1);
+}
+
+.footer-social a:hover {
+  color: #22d3ee;
+  transform: translateY(-6px) scale(1.2);
+  text-shadow: 0 0 14px rgba(34,211,238,0.7), 0 0 35px rgba(96,165,250,0.4);
+}
+
+/* Tagline */
+.footer-tagline {
+  margin-top: 16px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Bottom */
+.footer-bottom {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 65px;
+  opacity: 0;
+  transition: 1.2s ease;
+}
+
+.footer-bottom::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #22d3ee, transparent);
+  transition: 1.5s ease;
+  box-shadow: 0 0 18px rgba(34,211,238,0.7);
+}
+
+/* Reveal active */
+.reveal-footer.show .footer-column {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-footer.show .footer-bottom {
+  opacity: 1;
+}
+
+.reveal-footer.show .footer-bottom::before {
+  width: 100%;
+}
+
+/* Stagger delays */
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+.delay-3 { transition-delay: 0.6s; }
+.delay-4 { transition-delay: 0.8s; }
+
+/* ===== Responsive ===== */
+@media(max-width: 1100px){
+  .footer-container {
+    flex-direction: column;
+    gap: 35px;
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+
+  .footer-social a {
+    font-size: 20px;
+  }
+
+  .footer-bottom {
+    padding-top: 30px;
+  }
+}
+
+@media(max-width: 600px){
+  .footer-section {
+    padding: 80px 5% 40px 5%;
+  }
+
+  .footer-column h2 {
+    font-size: 1.7rem;
+  }
+
+  .footer-column h3 {
+    font-size: 1.1rem;
+  }
+
+  .footer-column p,
+  .footer-column ul li,
+  .footer-column a {
+    font-size: 14px;
+  }
+
+  .footer-social a {
+    margin-right: 12px;
+  }
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Perfect Custom Cursor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* Disable default cursor ONLY on mouse devices */
+    @media (hover: hover) {
+      body {
+        cursor: none;
+      }
+    }
+
+    body {
+      min-height: 200vh;
+      background: #0e0e0e;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 60px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      opacity: 0.8;
+    }
+
+    /* ===== Base cursor styles (PERFECT ALIGNMENT SETUP) ===== */
+    .cursor-main,
+    .cursor-follow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      transform: translate3d(0,0,0);
+      will-change: transform;
+    }
+
+    /* ===== ARROW CURSOR ===== */
+    .cursor-main {
+      width: 14px;
+      height: 14px;
+      border-left: 2px solid #00f2ff;
+      border-bottom: 2px solid #00f2ff;
+      transform-origin: 50% 50%;
+      z-index: 10000;
+    }
+
+    /* ===== RING FOLLOWERS ===== */
+    .cursor-follow {
+      border-radius: 50%;
+      z-index: 9999;
+    }
+
+    .cursor-follow-1 {
+      width: 32px;
+      height: 32px;
+      border: 2px solid rgba(0, 242, 255, 0.6);
+    }
+
+    .cursor-follow-2 {
+      width: 56px;
+      height: 56px;
+      border: 2px solid rgba(0, 242, 255, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Perfect Cursor Animation</h1>
+  <p>Arrow + Dual Smooth Trailing Rings</p>
+
+  <!-- ===== CURSOR ELEMENTS ===== -->
+  <div class="cursor-main"></div>
+  <div class="cursor-follow cursor-follow-1"></div>
+  <div class="cursor-follow cursor-follow-2"></div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    const mainCursor = document.querySelector(".cursor-main");
+    const follower1 = document.querySelector(".cursor-follow-1");
+    const follower2 = document.querySelector(".cursor-follow-2");
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    let pos1X = mouseX, pos1Y = mouseY;
+    let pos2X = mouseX, pos2Y = mouseY;
+
+    // ===== EXACT REAL MOUSE TRACKING =====
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      mainCursor.style.transform =
+        `translate3d(${mouseX}px, ${mouseY}px, 0) rotate(-45deg)`;
+    });
+
+    // ===== SMOOTH TRAILING =====
+    function animate() {
+
+      // Medium lag - 0.7
+      pos1X += (mouseX - pos1X) * 0.07;
+      pos1Y += (mouseY - pos1Y) * 0.07;
+
+      // Slow lag - 0.5
+      pos2X += (mouseX - pos2X) * 0.05;
+      pos2Y += (mouseY - pos2Y) * 0.05;
+
+      follower1.style.transform =
+        `translate3d(${pos1X}px, ${pos1Y}px, 0)`;
+
+      follower2.style.transform =
+        `translate3d(${pos2X}px, ${pos2Y}px, 0)`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+
+</body>
+</html>

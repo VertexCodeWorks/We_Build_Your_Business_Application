@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Neon Glow Pulse Cursor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* Hide default cursor only for mouse devices */
+    @media (hover: hover) {
+      body { cursor: none; }
+    }
+
+    body {
+      min-height: 200vh;
+      background: radial-gradient(circle at center, #050a1a, #000);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 60px;
+    }
+
+    h1 {
+      font-size: 42px;
+    }
+
+    p {
+      opacity: 0.8;
+    }
+
+    /* ===== BASE CURSOR SETUP ===== */
+    .neon-dot,
+    .neon-trail {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      transform: translate3d(0,0,0);
+      will-change: transform;
+      z-index: 10000;
+    }
+
+    /* ===== MAIN NEON DOT ===== */
+    .neon-dot {
+      width: 8px;
+      height: 8px;
+      background: #00f2ff;
+      border-radius: 50%;
+      box-shadow:
+        0 0 6px #00f2ff,
+        0 0 12px #00f2ff,
+        0 0 24px rgba(0, 242, 255, 0.8);
+      animation: pulse 1.4s infinite ease-in-out;
+    }
+
+    /* ===== NEON TRAIL RING ===== */
+    .neon-trail {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 242, 255, 0.4);
+      box-shadow:
+        0 0 12px rgba(0, 242, 255, 0.6),
+        inset 0 0 12px rgba(0, 242, 255, 0.4);
+      filter: blur(0.2px);
+    }
+
+    /* ===== PULSE ANIMATION ===== */
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.6); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Neon Glow Pulse Cursor</h1>
+  <p>Cyber / Gaming / Neon Theme Cursor</p>
+
+  <!-- ===== CURSOR ELEMENTS ===== -->
+  <div class="neon-dot"></div>
+  <div class="neon-trail"></div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    const dot = document.querySelector(".neon-dot");
+    const trail = document.querySelector(".neon-trail");
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    let trailX = mouseX;
+    let trailY = mouseY;
+
+    // Track real mouse
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      dot.style.transform =
+        `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+    });
+
+    // Smooth glowing trail follow
+    function animate() {
+      trailX += (mouseX - trailX) * 0.08;
+      trailY += (mouseY - trailY) * 0.08;
+
+      trail.style.transform =
+        `translate3d(${trailX}px, ${trailY}px, 0)`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+
+</body>
+</html>
