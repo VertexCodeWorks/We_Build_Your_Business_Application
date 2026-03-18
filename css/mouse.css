@@ -1,47 +1,69 @@
-/* Hide default cursor on mouse devices */
-@media (hover: hover) {
+/* ============================= */
+/* Hide default cursor (Desktop only) */
+/* ============================= */
+@media (hover: hover) and (pointer: fine) {
   body {
     cursor: none;
   }
 }
 
-/* ===== Cursor Base Setup ===== */
+/* ============================= */
+/* Hide custom cursor on Mobile */
+/* ============================= */
+@media (pointer: coarse) {
+  .cursor-main,
+  .cursor-follow,
+  .cursor-follow-1,
+  .cursor-follow-2 {
+    display: none !important;
+  }
+
+  body {
+    cursor: auto;
+  }
+}
+
+/* ============================= */
+/* Cursor Base Setup */
+/* ============================= */
 .cursor-main,
-.cursor-follow {
+.cursor-follow,
+.cursor-follow-1,
+.cursor-follow-2 {
   position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
   will-change: transform;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
   transform-origin: center center;
 }
 
-/* ===== Sharp Tech Arrow ===== */
+/* ============================= */
+/* Main Cursor (Arrow Style) */
+/* ============================= */
 .cursor-main {
   width: 14px;
   height: 14px;
-  border-left: 2px solid #00f2ff;
+  border-left: 2px solid #00f2ff; /* Default theme */
   border-bottom: 2px solid #00f2ff;
   z-index: 10000;
   filter: drop-shadow(0 0 4px rgba(0, 242, 255, 0.8));
 }
-.cursor-main {
-  width: 14px;
-  height: 14px;
-  border-left: 2px solid #05005c;
-  border-bottom: 2px solid #05005c;
-  z-index: 10000;
-  filter: drop-shadow(0 0 4px rgba(14, 0, 104, 0.8));
-}
 
-
-/* ===== Trailing Rings ===== */
-.cursor-follow {
+/* ============================= */
+/* Trailing Rings Base */
+/* ============================= */
+.cursor-follow,
+.cursor-follow-1,
+.cursor-follow-2 {
   border-radius: 50%;
   z-index: 9999;
 }
 
+/* ============================= */
+/* Ring 1 */
+/* ============================= */
 .cursor-follow-1 {
   width: 32px;
   height: 32px;
@@ -49,6 +71,9 @@
   box-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
 }
 
+/* ============================= */
+/* Ring 2 */
+/* ============================= */
 .cursor-follow-2 {
   width: 56px;
   height: 56px;
